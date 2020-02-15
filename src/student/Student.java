@@ -5,9 +5,13 @@
  */
 package student;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -19,7 +23,7 @@ public class Student {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         List<Students> student = new ArrayList<>();
         itStudent iS1 = new itStudent(1, "Aliaa", 25, 30, 35);
         itStudent iS2 = new itStudent(2, "Hafsa", 30, 20, 40);
@@ -47,8 +51,21 @@ public class Student {
 
         System.out.println("Sorted Students ================");
         for (Students s : studentList) {
-            System.out.println(s);
+//            System.out.println(s);
+            File file = new File("data.txt");
+        PrintWriter output = new PrintWriter(file);
+        output.print(s);
+        output.close();
+         Scanner input = new Scanner(file);
+        while(input.hasNext())
+            System.out.println(input.nextLine());
+        input.close();
+
+
         }
+        
+         
+       
     }
 
 }
